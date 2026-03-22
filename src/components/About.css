@@ -1,0 +1,18 @@
+/* Responsive stacking */
+@media (max-width: 860px) {
+  .about-two-col {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 3rem !important;
+  }
+  .about-two-col .role-typography {
+    padding: 0 !important;
+    align-items: center !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .about-two-col .role-typography .vertical-line {
+    display: none !important;
+  }
+}

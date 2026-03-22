@@ -1,0 +1,108 @@
+.social-icons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 90;
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-container-left,
+.resume-container-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    pointer-events: auto;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.social-container-left {
+    padding-left: 4vw;
+}
+
+.resume-container-right {
+    padding-right: 4vw;
+}
+
+.social-icon-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.25rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+}
+
+.social-icon-btn:hover {
+    color: #fff;
+    transform: translateY(-4px);
+}
+
+.social-icon-btn::before {
+    content: '';
+    position: absolute;
+    top: var(--siTop, 50%);
+    left: var(--siLeft, 50%);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.2);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: 0;
+}
+
+.social-icon-btn:hover::before {
+    width: 250%;
+    height: 250%;
+}
+
+.icon-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.resume-text-btn {
+    position: relative;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    padding: 1rem 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resume-text-btn:hover {
+    color: #8b5cf6;
+    transform: translateY(-6px);
+}
+
+.social-line {
+    width: 1px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .social-icons {
+        display: none;
+    }
+}
