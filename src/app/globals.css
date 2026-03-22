@@ -9,6 +9,29 @@
   --vh: 100vh;
 }
 
+html, body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  position: relative;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+  -webkit-appearance: none;
+}
+
+.min-h-screen {
+  min-height: 100dvh;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -76,8 +99,10 @@ section, .section-wrapper {
 
 @media (max-width: 768px) {
   section, .section-wrapper {
-    padding-top: 5rem !important;
-    padding-bottom: 5rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
   }
 }
 
@@ -276,6 +301,18 @@ html {
 
 .animate-grid {
   animation: grid 15s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .font-display {
+    font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.01em !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto !important; }
 }
 
 #contact > *:not(canvas):not(.retro-grid-wrapper) {

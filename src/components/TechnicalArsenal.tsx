@@ -92,7 +92,7 @@ const Balloon = ({ vec = new THREE.Vector3(), imageUrl, name, position }: Balloo
       
       {/* Name Label */}
       <Html center position={[0, -1.5, 0]} className="pointer-events-none">
-        <div className="bg-[#111111]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-white/90 font-mono text-[11px] whitespace-nowrap shadow-xl">
+        <div className="arsenal-pill bg-[#111111]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-white/90 font-mono text-[11px] whitespace-nowrap shadow-xl">
           {name}
         </div>
       </Html>
