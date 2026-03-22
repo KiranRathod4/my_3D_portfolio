@@ -1,7 +1,7 @@
 "use client";
 
 import * as THREE from "three";
-import { useRef, useState } from "react";
+import { useRef, useState, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, useTexture, Sphere as SphereGeo, Html, Decal } from "@react-three/drei";
 import { Physics, RigidBody, BallCollider, RapierRigidBody } from "@react-three/rapier";
@@ -117,16 +117,45 @@ const Pointer = ({ vec = new THREE.Vector3() }) => {
 };
 
 export default function TechnicalArsenal() {
-  const [spheres] = useState(() => {
-    return techStack.map((tech) => ({
-      position: [(Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10] as [number, number, number],
-      imageUrl: tech.url,
-      name: tech.name,
-    }));
-  });
+  const [shouldRender, setShouldRender] = useState(false);
+  const [sphereCount, setSphereCount] = useState(12);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (shouldRender) {
+      const timer = setTimeout(() => setSphereCount(techStack.length), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldRender]);
+
+  const spheres = techStack.slice(0, sphereCount).map((tech) => ({
+    position: [(Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10] as [number, number, number],
+    imageUrl: tech.url,
+    name: tech.name,
+  }));
+
+  const LoadingSkeleton = () => (
+    <div className="w-full h-full flex items-center justify-center bg-transparent">
+      <div className="w-[120px] h-[120px] rounded-full border border-purple-500/20 animate-[skeletonPulse_1.5s_ease-in-out_infinite]" />
+    </div>
+  );
 
   return (
-    <section id="arsenal" className="bg-[#0a0a0a] relative overflow-hidden flex flex-col items-center">
+    <section ref={sectionRef} id="arsenal" className="bg-[#0a0a0a] relative overflow-hidden flex flex-col items-center min-h-[700px]">
       <div className="flex justify-center" style={{ paddingBottom: '100px' }}>
         <SectionHeading
           thinText="TECHNICAL"
@@ -138,20 +167,38 @@ export default function TechnicalArsenal() {
       </div>
 
       <div style={{ width: "100%", height: "500px" }}>
-        <Canvas shadows camera={{ position: [0, 0, 15], fov: 35 }}>
-          <ambientLight intensity={1.5} />
-          <spotLight position={[20, 20, 10]} penumbra={1} castShadow angle={0.2} intensity={2} />
-          <Physics gravity={[0, 0, 0]}>
-            <Pointer />
-            {spheres.map((props, i) => (
-              <Balloon key={i} {...props} />
-            ))}
-          </Physics>
-          <Environment preset="city" />
-          <EffectComposer>
-            <N8AO aoRadius={2} intensity={1} color="#0a0a0a" />
-          </EffectComposer>
-        </Canvas>
+        {shouldRender ? (
+          <Suspense fallback={<LoadingSkeleton />}>
+            <Canvas 
+              shadows 
+              camera={{ position: [0, 0, 15], fov: 35 }}
+              gl={{
+                antialias: false,
+                powerPreference: 'high-performance',
+                alpha: true,
+                stencil: false,
+                depth: false,
+              }}
+              frameloop="demand"
+              dpr={[1, 1.5]}
+            >
+              <ambientLight intensity={1.5} />
+              <spotLight position={[20, 20, 10]} penumbra={1} castShadow angle={0.2} intensity={2} />
+              <Physics gravity={[0, 0, 0]}>
+                <Pointer />
+                {spheres.map((props, i) => (
+                  <Balloon key={i} {...props} />
+                ))}
+              </Physics>
+              <Environment preset="city" />
+              <EffectComposer>
+                <N8AO aoRadius={2} intensity={1} color="#0a0a0a" />
+              </EffectComposer>
+            </Canvas>
+          </Suspense>
+        ) : (
+          <LoadingSkeleton />
+        )}
       </div>
       <div className="mb-[6rem]" />
     </section>

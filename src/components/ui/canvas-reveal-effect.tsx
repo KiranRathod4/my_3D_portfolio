@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, Suspense } from "react";
 import * as THREE from "three";
 
 export const CanvasRevealEffect = ({
@@ -291,9 +291,18 @@ const ShaderMaterial = ({
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
   return (
-    <Canvas className="absolute inset-0  h-full w-full">
-      <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
-    </Canvas>
+    <Suspense fallback={<div className="absolute inset-0 bg-transparent" />}>
+      <Canvas 
+        className="absolute inset-0 h-full w-full"
+        gl={{
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
+        dpr={[1, 1.5]}
+      >
+        <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
+      </Canvas>
+    </Suspense>
   );
 };
 interface ShaderProps {
