@@ -150,7 +150,13 @@ export default function TechnicalArsenal() {
 
   const LoadingSkeleton = () => (
     <div className="w-full h-full flex items-center justify-center bg-transparent">
-      <div className="w-[120px] h-[120px] rounded-full border border-purple-500/20 animate-[skeletonPulse_1.5s_ease-in-out_infinite]" />
+      <div style={{
+        width: '120px',
+        height: '120px',
+        borderRadius: '50%',
+        border: '1px solid rgba(139,92,246,0.2)',
+        animation: 'skeletonPulse 1.5s ease-in-out infinite',
+      }} />
     </div>
   );
 
