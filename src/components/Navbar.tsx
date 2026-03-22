@@ -98,27 +98,14 @@ export default function Navbar() {
 
                 {/* Mobile Toggle */}
                 <button
-                    className="lg:hidden flex flex-col gap-1.5 p-2 transition-all duration-300"
+                    className="lg:hidden text-white p-2"
                     onClick={() => {
                         playNavClick();
                         toggleMobileMenu();
                     }}
                     aria-label="Toggle Menu"
                 >
-                    <span style={{ 
-                        width: '22px', height: '2px', background: '#fff', display: 'block',
-                        transform: isMobileMenuOpen ? 'rotate(45deg) translateY(5.5px)' : 'none',
-                        transition: '0.3s' 
-                    }} />
-                    <span style={{ 
-                        width: '22px', height: '2px', background: '#fff', display: 'block',
-                        opacity: isMobileMenuOpen ? 0 : 1, transition: '0.3s' 
-                    }} />
-                    <span style={{ 
-                        width: '22px', height: '2px', background: '#fff', display: 'block',
-                        transform: isMobileMenuOpen ? 'rotate(-45deg) translateY(-5.5px)' : 'none',
-                        transition: '0.3s' 
-                    }} />
+                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
@@ -126,32 +113,17 @@ export default function Navbar() {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        style={{
-                            position: 'fixed', inset: 0, zIndex: 99,
-                            background: 'rgba(10,10,10,0.97)',
-                            backdropFilter: 'blur(20px)',
-                            display: 'flex', flexDirection: 'column',
-                            alignItems: 'center', justifyContent: 'center',
-                            gap: '2rem',
-                        }}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="fixed inset-0 z-[99] bg-black flex flex-col items-center justify-center space-y-8"
                     >
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
                                 onClick={(e) => scrollToSection(e, link.href)}
-                                style={{
-                                    fontFamily: 'Syne, sans-serif', 
-                                    fontWeight: 700,
-                                    fontSize: '2rem', 
-                                    color: '#fff', 
-                                    textDecoration: 'none',
-                                    transition: 'color 0.2s',
-                                }}
-                                className="hover:text-[#8b5cf6]"
+                                className="text-2xl font-bold text-white/70 hover:text-white transition-colors"
                             >
                                 {link.name}
                             </Link>

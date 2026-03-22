@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 
 export function DragonCursor() {
   const [clicking, setClicking] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const mouse = useRef({ x: 0, y: 0 });
   const segmentsRef = useRef<HTMLDivElement[]>([]);
   
@@ -11,10 +10,6 @@ export function DragonCursor() {
   const points = useRef(Array.from({ length: 12 }, () => ({ x: 0, y: 0, angle: 0 })));
 
   useEffect(() => {
-    const checkTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    setIsTouchDevice(checkTouch);
-    if (checkTouch) return;
-
     document.documentElement.style.cursor = 'none';
 
     const onMove = (e: MouseEvent) => {
@@ -80,8 +75,6 @@ export function DragonCursor() {
       cancelAnimationFrame(raf);
     };
   }, []);
-
-  if (isTouchDevice) return null;
 
   return (
     <>
