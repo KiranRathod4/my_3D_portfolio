@@ -328,3 +328,229 @@ html {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+/* --- MOBILE RESPONSIVENESS FIXES (Android + iOS) --- */
+
+/* FIX 2 — HERO SECTION */
+@media (max-width: 768px) {
+  #hero {
+    grid-template-columns: 1fr !important;
+    padding: 6rem 1.5rem 3rem !important;
+    text-align: center;
+    height: auto !important;
+    min-height: 100dvh;
+  }
+
+  .hero-heading, #home h1 {
+    font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+  }
+
+  .chips-row, .hero-ctas, .scroll-hint, #home p {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
+/* FIX 3 — ABOUT ME */
+@media (max-width: 768px) {
+  .about-two-col {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    padding: 0 1.25rem !important;
+  }
+
+  .about-two-col > div:first-child {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+
+  .role-typography {
+    padding: 0 !important;
+    align-items: center !important;
+    text-align: center !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+
+  .spotify-card {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+
+  .role-typography .role-text {
+    font-size: clamp(2rem, 12vw, 3rem) !important;
+  }
+
+  .role-typography .vertical-line {
+    display: none !important;
+  }
+}
+
+/* FIX 4 — WHAT I DO CARDS */
+@media (max-width: 768px) {
+  .whatido-cards {
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 12px !important;
+  }
+
+  .whatido-cards > div {
+    flex: none !important;
+    height: 160px !important;
+    min-width: unset !important;
+    width: 100% !important;
+  }
+
+  .whatido-cards > div:hover, 
+  .whatido-cards > div:has(:hover) {
+    height: 320px !important;
+  }
+
+  .whatido-cards .vertical-title {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    position: static !important;
+    margin-bottom: 1rem;
+  }
+}
+
+/* FIX 5 — TECHNICAL ARSENAL */
+@media (max-width: 768px) {
+  #arsenal .title-wrapper {
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .marquee-track {
+    animation-duration: 25s !important;
+  }
+
+  .arsenal-pill {
+    height: 36px !important;
+    padding: 0 0.8rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .arsenal-pill span {
+    font-size: 0.72rem !important;
+  }
+}
+
+/* FIX 6 — PROJECTS CAROUSEL */
+@media (max-width: 768px) {
+  #projects {
+    padding-left: 1.25rem !important;
+  }
+
+  .project-card {
+    width: 280px !important;
+    height: 380px !important;
+  }
+
+  .project-nav-arrows {
+    display: none !important;
+  }
+
+  #projects .section-heading {
+    justify-content: center !important;
+    padding-right: 1.25rem;
+  }
+}
+
+/* FIX 7 — EXPERIENCE SECTION */
+@media (max-width: 768px) {
+  .experience-timeline-line {
+    display: none !important;
+  }
+
+  .experience-card-wrapper {
+    margin-left: 0 !important;
+  }
+
+  .experience-header {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .experience-date-badge {
+    align-self: flex-start !important;
+  }
+
+  .experience-card {
+    animation: none !important;
+  }
+}
+
+/* FIX 8 — ACHIEVEMENTS */
+@media (max-width: 768px) {
+  .achievements-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .achievement-card {
+    transform: none !important;
+  }
+}
+
+/* FIX 9 — LET'S WORK TOGETHER */
+@media (max-width: 768px) {
+  #contact h2 {
+    font-size: clamp(2rem, 10vw, 3.5rem) !important;
+    white-space: normal !important;
+    text-align: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.3rem !important;
+  }
+
+  #contact .buttons-row {
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  #contact .buttons-row a,
+  #contact .buttons-row button {
+    width: 100% !important;
+    max-width: 300px !important;
+    justify-content: center !important;
+  }
+
+  #contact .voice-card {
+    max-width: 100% !important;
+  }
+}
+
+/* FIX 10 — FOOTER */
+@media (max-width: 768px) {
+  footer .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  footer .connect-col {
+    align-items: flex-start !important;
+  }
+
+  footer .footer-bottom {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    text-align: center !important;
+  }
+}
+
+/* FIX 13 — iOS SPECIFIC FIXES */
+body {
+  position: relative;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+  -webkit-appearance: none;
+}
