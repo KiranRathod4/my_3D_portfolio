@@ -330,7 +330,7 @@ html {
 }
 /* --- MOBILE RESPONSIVENESS FIXES (Android + iOS) --- */
 
-/* FIX 2 — HERO SECTION */
+/* FIX 2  HERO SECTION */
 @media (max-width: 768px) {
   #hero {
     grid-template-columns: 1fr !important;
@@ -350,7 +350,7 @@ html {
   }
 }
 
-/* FIX 3 — ABOUT ME */
+/* FIX 3  ABOUT ME */
 @media (max-width: 768px) {
   .about-two-col {
     flex-direction: column !important;
@@ -387,7 +387,7 @@ html {
   }
 }
 
-/* FIX 4 — WHAT I DO CARDS */
+/* FIX 4  WHAT I DO CARDS */
 @media (max-width: 768px) {
   .whatido-cards {
     flex-direction: column !important;
@@ -415,7 +415,7 @@ html {
   }
 }
 
-/* FIX 5 — TECHNICAL ARSENAL */
+/* FIX 5  TECHNICAL ARSENAL */
 @media (max-width: 768px) {
   #arsenal .title-wrapper {
     text-align: center;
@@ -439,7 +439,7 @@ html {
   }
 }
 
-/* FIX 6 — PROJECTS CAROUSEL */
+/* FIX 6  PROJECTS CAROUSEL */
 @media (max-width: 768px) {
   #projects {
     padding-left: 1.25rem !important;
@@ -460,7 +460,7 @@ html {
   }
 }
 
-/* FIX 7 — EXPERIENCE SECTION */
+/* FIX 7  EXPERIENCE SECTION */
 @media (max-width: 768px) {
   .experience-timeline-line {
     display: none !important;
@@ -484,7 +484,7 @@ html {
   }
 }
 
-/* FIX 8 — ACHIEVEMENTS */
+/* FIX 8  ACHIEVEMENTS */
 @media (max-width: 768px) {
   .achievements-grid {
     grid-template-columns: 1fr !important;
@@ -496,7 +496,7 @@ html {
   }
 }
 
-/* FIX 9 — LET'S WORK TOGETHER */
+/* FIX 9  LET'S WORK TOGETHER */
 @media (max-width: 768px) {
   #contact h2 {
     font-size: clamp(2rem, 10vw, 3.5rem) !important;
@@ -524,7 +524,7 @@ html {
   }
 }
 
-/* FIX 10 — FOOTER */
+/* FIX 10  FOOTER */
 @media (max-width: 768px) {
   footer .footer-grid {
     grid-template-columns: 1fr !important;
@@ -542,7 +542,7 @@ html {
   }
 }
 
-/* FIX 13 — iOS SPECIFIC FIXES */
+/* FIX 13  iOS SPECIFIC FIXES */
 body {
   position: relative;
 }
